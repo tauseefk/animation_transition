@@ -1,0 +1,6 @@
+/Users/tauseefk/personal/rust/animation_transition/target/debug/deps/animation_transition_derive-35fe37573af7fb78.rmeta: animation_transition_derive/src/lib.rs animation_transition_derive/src/animation_transition_macro.rs
+
+/Users/tauseefk/personal/rust/animation_transition/target/debug/deps/animation_transition_derive-35fe37573af7fb78.d: animation_transition_derive/src/lib.rs animation_transition_derive/src/animation_transition_macro.rs
+
+animation_transition_derive/src/lib.rs:
+animation_transition_derive/src/animation_transition_macro.rs:

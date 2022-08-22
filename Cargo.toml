@@ -1,0 +1,6 @@
+[workspace]
+
+members = [
+  "animation_transition",
+  "animation_transition_derive"
+]

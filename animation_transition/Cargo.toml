@@ -1,0 +1,17 @@
+[package]
+name = "animation_transition"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+animation_transition_derive = { version = "=0.1.0", optional = true, path = "../animation_transition_derive" }
+
+[dev-dependencies]
+animation_transition_derive = { version = "0.1.0", path = "../animation_transition_derive" }
+
+[features]
+
+# Provide derive(AnimationTransitionMacro) macros.
+derive = ["animation_transition_derive"]
