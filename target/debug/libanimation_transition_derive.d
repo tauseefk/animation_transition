@@ -1,1 +1,0 @@
-/Users/tauseefk/personal/rust/animation_transition/target/debug/libanimation_transition_derive.dylib: /Users/tauseefk/personal/rust/animation_transition/animation_transition_derive/src/animation_transition_macro.rs /Users/tauseefk/personal/rust/animation_transition/animation_transition_derive/src/lib.rs

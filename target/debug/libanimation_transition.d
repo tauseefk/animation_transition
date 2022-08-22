@@ -1,1 +1,0 @@
-/Users/tauseefk/personal/rust/animation_transition/target/debug/libanimation_transition.rlib: /Users/tauseefk/personal/rust/animation_transition/animation_transition/src/lib.rs /Users/tauseefk/personal/rust/animation_transition/animation_transition/src/traits.rs

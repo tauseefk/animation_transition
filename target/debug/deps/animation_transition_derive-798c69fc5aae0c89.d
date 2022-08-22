@@ -1,6 +1,0 @@
-/Users/tauseefk/personal/rust/animation_transition/target/debug/deps/libanimation_transition_derive-798c69fc5aae0c89.dylib: animation_transition_derive/src/lib.rs animation_transition_derive/src/animation_transition_macro.rs
-
-/Users/tauseefk/personal/rust/animation_transition/target/debug/deps/animation_transition_derive-798c69fc5aae0c89.d: animation_transition_derive/src/lib.rs animation_transition_derive/src/animation_transition_macro.rs
-
-animation_transition_derive/src/lib.rs:
-animation_transition_derive/src/animation_transition_macro.rs:
