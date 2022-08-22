@@ -47,7 +47,8 @@ pub struct PlayerAnimationState {
 
 4. **And finally:**
 
-Option 1. use the handy macro [here](https://github.com/tauseefk/animation-transition-derive-macro)
+Option 1. use the handy macro:
+enable by using the `derive` feature, in `Cargo.toml`
 
 ```Rust
 #[derive(AnimationTransitionMacro)]
