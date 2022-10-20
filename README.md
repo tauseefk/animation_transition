@@ -1,12 +1,18 @@
 # animation-transition
 
-Fancy way to describe animation loops in a single array coz cache friendly.
-This is a lie, all it does is loop over array indices.
-You can probably use it for other things.
+### Turn this:
+![toad_anime_jump_small](https://user-images.githubusercontent.com/11029896/196866076-e491eb2c-df84-454c-bc3e-302c76feb705.png)
+
+### into this:
+![toad_anime_nobg_small](https://user-images.githubusercontent.com/11029896/196866248-5c28ed96-4f96-433b-a1b6-3319c2991a95.gif)
 
 ![Screen Shot 2022-08-08 at 3 28 21 PM](https://user-images.githubusercontent.com/11029896/183836973-f002f30f-8ac2-4717-8240-b1a9ecb70813.png)
 
 ![Screen Shot 2022-08-08 at 3 28 43 PM](https://user-images.githubusercontent.com/11029896/183836987-f1f6dce6-871e-4e5a-8da3-841734043c46.png)
+
+Fancy way to describe animation loops in a single array coz cache friendly.
+This is a lie, all it does is loop over array indices.
+You can probably use it for other things.
 
 ### Usage
 
