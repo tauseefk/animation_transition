@@ -42,8 +42,11 @@ pub fn impl_animation_transition_macro(ast: syn::DeriveInput) -> TokenStream {
 
                     fn transition_variant(&mut self, to: #ty) {
                         let (offset, _) = to.page();
-                        self.variant = to;
-                        self.idx = offset;
+
+                        if self.variant != to {
+                            self.variant = to;
+                            self.idx = offset;
+                        }
                     }
                 }
             }
