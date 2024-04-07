@@ -6,13 +6,92 @@
 ### into this:
 ![toad_anime_nobg_small](https://user-images.githubusercontent.com/11029896/196866248-5c28ed96-4f96-433b-a1b6-3319c2991a95.gif)
 
-![Screen Shot 2022-08-08 at 3 28 21 PM](https://user-images.githubusercontent.com/11029896/183836973-f002f30f-8ac2-4717-8240-b1a9ecb70813.png)
-
-![Screen Shot 2022-08-08 at 3 28 43 PM](https://user-images.githubusercontent.com/11029896/183836987-f1f6dce6-871e-4e5a-8da3-841734043c46.png)
-
-Fancy way to describe animation loops in a single array coz cache friendly.
-This is a lie, all it does is loop over array indices.
+Describe animation loops in a single array.
 You can probably use it for other things.
+
+```
+                                                                       
+                    DECLARING THE ENUM                                 
+                                                                       
+                                                                       
+       ╔═══════╦═══════╦═══════╦═══════╦═══════╦═══════╗               
+       ║       ║       ║       ║       ║       ║       ║▐▌             
+       ║   0   ║   1   ║   2   ║   3   ║   4   ║   5   ║▐▌             
+       ╚═══════╩═══════╩═══════╩═══════╩═══════╩═══════╝▐▌             
+        ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▘             
+                           [usize; 6]                                  
+                                                                       
+                                                                       
+     pub enum Variant {                pub trait AnimationLoop {       
+         Idle,           implements                                    
+         Rising, ━━━━━━━━━━━━━━━━━━━━━▶    fn page() -> (usize, usize);
+         Falling,                                                      
+     }                                 }                               
+                                                                       
+                                                                       
+                    MAPPING TO idx/offset                              
+                                                                       
+       ╔═══════╦═══════╦═══════╦═══════╦═══════╦═══════╗               
+       ║       ║       ║       ║       ║       ║       ║▐▌             
+       ║   0   ║   1   ║   2   ║   3   ║   4   ║   5   ║▐▌             
+       ╚═══════╩═══════╩═══════╩═══╤═══╩═══════╩═══════╝▐▌             
+        ▀▀▀▀▀▀▀▀▀▀▀│▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀│▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▘             
+                   └───────┬───────┘                                   
+                           ╵                                           
+              Idle::pages(); // (offset: 1, size: 3)                   
+                                                                       
+                                                                       
+                                                                       
+       ╔═══════╦═══════╦═══════╦═══════╦═══════╦═══════╗               
+       ║       ║       ║       ║       ║       ║       ║▐▌             
+       ║   0   ║   1   ║   2   ║   3   ║   4   ║   5   ║▐▌             
+       ╚═══════╩═══════╩═══════╩═══╤═══╩═══╤═══╩═══════╝▐▌             
+        ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀│▀▀▀▀▀▀▀│▀▀▀▀▀▀▀▀▀▀▀▀▀▘             
+                                   └───┬───┘                           
+                                       ╵                               
+              Rising::pages(); // (offset: 3, size: 2)                 
+                                                                       
+                                                                       
+```
+
+```
+                                                                       
+                                                                       
+                   FLIPPING THROUGH SPRITES                            
+                                                                       
+                                                                       
+                                   ┌───────┐                           
+                                   │       │                           
+       ╔═══════╦═══════╦═══════╦═══╧═══╦═══▼═══╦═══════╗               
+       ║       ║       ║       ║       ║       ║       ║▐▌             
+       ║   0   ║   1   ║   2   ║   3   ║   4   ║   5   ║▐▌             
+       ╚═══════╩═══════╩═══════╩═══════╩═══════╩═══════╝▐▌             
+        ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▘             
+                                                                       
+              animation_state.variant; // Variant::Rising              
+              animation_state.idx; // 3                                
+              animation_state.wrapping_next_idx(); //  4               
+                                                                       
+                                                                       
+                       VARIANT TRANSITION                              
+                                                                       
+                                                                       
+                                       ┏━━━━━━━━━━━┓                   
+                                       ┃           ┃                   
+                                   ┌───┸───┐       ┃                   
+       ╔═══════╦═══════╦═══════╦═══╧═══╦═══╧═══╦═══▼═══╗               
+       ║       ║       ║       ║       ║       ║       ║▐▌             
+       ║   0   ║   1   ║   2   ║   3   ║   4   ║   5   ║▐▌             
+       ╚═══════╩═══════╩═══════╩═══════╩═══════╩═══════╝▐▌             
+        ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▘             
+                                                                       
+              animation_state.variant;              // Variant::Rising 
+              animation_state.transition_variant(); // ()              
+              animation_state.variant;              // Variant::Falling
+              animation_state.idx;                  // 5               
+                                                                       
+                                                                       
+```
 
 ### Usage
 
